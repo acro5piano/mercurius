@@ -115,6 +115,7 @@ const plugin = fp(async function (app, opts) {
   let verifyClient
   let subscriptionContextFn
   let onConnect
+  let handleWebsocket
 
   if (typeof subscriptionOpts === 'object') {
     if (subscriptionOpts.pubsub) {
@@ -126,6 +127,7 @@ const plugin = fp(async function (app, opts) {
     verifyClient = subscriptionOpts.verifyClient
     subscriptionContextFn = subscriptionOpts.context
     onConnect = subscriptionOpts.onConnect
+    handleWebsocket = subscriptionOpts.handleWebsocket
   } else if (subscriptionOpts === true) {
     emitter = mq()
     subscriber = new PubSub(emitter)
@@ -228,7 +230,8 @@ const plugin = fp(async function (app, opts) {
       onConnect,
       lruGatewayResolvers,
       entityResolversFactory,
-      subscriptionContextFn
+      subscriptionContextFn,
+      handleWebsocket
     })
   }
 
