@@ -15,7 +15,7 @@ import {
   GraphQLScalarType,
   ValidationRule,
 } from "graphql";
-import { SocketStream } from "fastify-websocket"
+import { SocketStream, WebsocketHandler } from "fastify-websocket"
 import { IncomingMessage, IncomingHttpHeaders, OutgoingHttpHeaders } from "http";
 import { Readable } from "stream";
 
@@ -263,6 +263,7 @@ export interface MercuriusCommonOptions {
           type: 'connection_init';
           payload: any;
         }) => Record<string, any> | Promise<Record<string, any>>;
+        handleWebsocket?: WebsocketHandler
       };
   /**
    * Enable federation metadata support so the service can be deployed behind an Apollo Gateway
